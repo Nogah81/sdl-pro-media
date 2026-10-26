@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – SDL Pro Media</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- Login -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <h1>SDL Pro Media</h1>
+      <p>Admin Panel</p>
+      <form id="loginForm">
+        <input type="password" id="password" placeholder="Password" required autofocus />
+        <button type="submit">Log in</button>
+      </form>
+      <p class="login-hint">Default password: <code>admin123</code></p>
+      <p id="loginError" class="error"></p>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="dashboard hidden">
+    <aside class="sidebar">
+      <div class="brand">SDL <span>Admin</span></div>
+      <nav>
+        <button class="nav-btn active" data-tab="overview">Overview</button>
+        <button class="nav-btn" data-tab="media">Media Library</button>
+        <button class="nav-btn" data-tab="upload">Upload</button>
+        <button class="nav-btn" data-tab="submissions">Registrations</button>
+        <button class="nav-btn" data-tab="settings">Settings</button>
+      </nav>
+      <button id="logoutBtn" class="logout">Log out</button>
+    </aside>
+
+    <main class="main">
+      <!-- Overview -->
+      <section id="tab-overview" class="tab active">
+        <h2>Dashboard Overview</h2>
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card"><span class="stat-value" id="statPageViews">–</span><span class="stat-label">Total Page Views</span></div>
+          <div class="stat-card"><span class="stat-value" id="statMediaViews">–</span><span class="stat-label">Media Views</span></div>
+          <div class="stat-card"><span class="stat-value" id="statMediaCount">–</span><span class="stat-label">Media Items</span></div>
+          <div class="stat-card"><span class="stat-value" id="statSubmissions">–</span><span class="stat-label">Registrations</span></div>
+          <div class="stat-card"><span class="stat-value" id="statEmail">–</span><span class="stat-label">Email Alerts</span></div>
+        </div>
+        <p id="emailNote" class="subtitle" style="margin-top:-20px;margin-bottom:24px;"></p>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3>Top Viewed Media</h3>
+            <div id="topMediaList" class="list"></div>
+          </div>
+          <div class="panel">
+            <h3>Recent Page Views</h3>
+            <div id="recentViewsList" class="list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Media Library -->
+      <section id="tab-media" class="tab">
+        <h2>Media Library</h2>
+        <div id="mediaGrid" class="media-grid"></div>
+      </section>
+
+      <!-- Upload -->
+      <section id="tab-upload" class="tab">
+        <h2>Upload Photos & Videos</h2>
+        <form id="uploadForm" class="upload-form">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="e.g. Editorial Portrait" required />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category">
+              <option value="portrait">Portrait</option>
+              <option value="event">Event</option>
+              <option value="commercial">Commercial</option>
+              <option value="lifestyle">Lifestyle</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>File (image or video, max 100 MB)</label>
+            <input type="file" name="file" accept="image/*,video/*" required />
+          </div>
+          <button type="submit" class="btn">Upload</button>
+          <p id="uploadStatus" class="status"></p>
+        </form>
+      </section>
+
+      <!-- Submissions / Registrations -->
+      <section id="tab-submissions" class="tab">
+        <h2>Registrations & Contact Messages</h2>
+        <p class="subtitle">People who filled the contact form – shown as soon as they submit.</p>
+        <div id="submissionsList" class="submissions"></div>
+      </section>
+
+      <!-- Settings -->
+      <section id="tab-settings" class="tab">
+        <h2>Settings</h2>
+        <form id="passwordForm" class="upload-form">
+          <div class="form-group">
+            <label>New Admin Password</label>
+            <input type="password" name="newPassword" minlength="6" required placeholder="At least 6 characters" />
+          </div>
+          <button type="submit" class="btn">Change Password</button>
+          <p id="passwordStatus" class="status"></p>
+        </form>
+        <div class="upload-form" style="margin-top:24px;">
+          <h3 style="margin-bottom:12px;font-size:1rem;">Email Alerts</h3>
+          <p style="color:#999;font-size:0.9rem;margin-bottom:16px;">Instant email when someone books + weekly viewer summary.</p>
+          <button type="button" class="btn" id="testEmailBtn">Send Test Email</button>
+          <p id="testEmailStatus" class="status"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
